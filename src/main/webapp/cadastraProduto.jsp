@@ -19,7 +19,7 @@
 		</ul>
 	</nav>
 	<main class="lojaMain">
-		<form action="" method="post" class="lojaForm">
+		<form action="cadastraProduto" method="post" class="lojaForm">
 			<div>
 				<label><strong>Descrição:</strong></label><input type="text"
 					name="descricao" placeholder="Descreva o produto">
@@ -34,7 +34,7 @@
 			</div>
 
 			<label><strong>Disponível On-Line:</strong></label><input
-				type="checkbox" name="online">
+				type="checkbox" name="dispOnLine">
 			<br>
 			<div>
 				<input id="lojaButton" type="submit" name="salvar"

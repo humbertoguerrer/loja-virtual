@@ -22,7 +22,7 @@
 		<form action="" method="post" class="lojaForm">
 			<div>
 				<label><strong>Busca pela Descrição:</strong></label><input type="text"
-					name="descricao">
+					name="descricao" placeholder="Digite o produto">
 			</div>
 			<br>
 			<div>
