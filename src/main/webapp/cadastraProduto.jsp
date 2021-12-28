@@ -25,7 +25,7 @@
 					name="descricao" placeholder="Descreva o produto">
 			</div>
 			<div>
-				<label><strong>Quantidade:</strong></label><input type="text"
+				<label><strong>Quantidade:</strong></label><input type="number"
 					name="quantidade" placeholder="Insira a quantidade de produto">
 			</div>
 			<div>

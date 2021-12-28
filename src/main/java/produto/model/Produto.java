@@ -6,7 +6,7 @@ public class Produto {
 	private String descricao;
 	private Integer quantidade;
 	private Double preco;
-	private boolean dispOnLine;
+	private Boolean dispOnLine;
 
 	public Produto() {
 	}
