@@ -25,11 +25,11 @@
 					name="descricao" placeholder="Descreva o produto">
 			</div>
 			<div>
-				<label><strong>Quantidade:</strong></label><input type="number"
+				<label><strong>Quantidade:</strong></label><input type="text"
 					name="quantidade" placeholder="Insira a quantidade de produto">
 			</div>
 			<div>
-				<label><strong>Preço:</strong></label><input type="number"
+				<label><strong>Preço:</strong></label><input type="text"
 					name="preco" placeholder="Insira o preço o produto">
 			</div>
 
@@ -39,6 +39,13 @@
 			<div>
 				<input id="lojaButton" type="submit" name="salvar"
 					value="Cadastrar Produto">
+			</div>
+			<div>
+			<%
+			String mensagem = (String) request.getAttribute("mensagem");
+			if (mensagem != null)
+				out.print(mensagem);
+			%>
 			</div>
 		</form>
 	</main>

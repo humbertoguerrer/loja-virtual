@@ -58,4 +58,7 @@ public class Produto {
 		this.dispOnLine = dispOnLine;
 	}
 
+	public void salvar() {
+		System.out.println("Produto salvo");
+	}
 }

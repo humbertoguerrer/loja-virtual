@@ -1,15 +1,16 @@
 package produto.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class CadastrarProdutoController
- */
+import produto.model.Produto;
+
 @WebServlet("/CadastrarProdutoController")
 public class CadastrarProdutoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,22 +30,33 @@ public class CadastrarProdutoController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		String descricao = request.getParameter("descricao");
-		Integer quantidade;
-		Double preco;
-		Boolean dispOnLine = false;
 
-		if (descricao != null && !descricao.isEmpty() && request.getParameter("quantidade") != null
-				&& !request.getParameter("quantidade").isEmpty() && request.getParameter("preco") != null
-				&& !request.getParameter("preco").isEmpty()) {
-			quantidade = Integer.parseInt(request.getParameter("quantidade"));
-			preco = Double.parseDouble(request.getParameter("preco"));
-			System.out.println("Descrição = " + descricao);
-			System.out.println("Quantidade = " + quantidade);
-			System.out.println("Preço = " + preco);
-			if (request.getParameter("dispOnLine") != null && request.getParameter("dispOnLine").equals("on")) {
-				dispOnLine = true;
-				System.out.println("Disponível OnLine = " + dispOnLine);
+		Boolean dispOnLine = false;
+		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastraProduto.jsp");
+		String mensagem;
+
+		try {
+			if (descricao != null && !descricao.isEmpty() && request.getParameter("quantidade") != null
+					&& !request.getParameter("quantidade").isEmpty() && request.getParameter("preco") != null
+					&& !request.getParameter("preco").isEmpty()) {
+				Integer quantidade = Integer.valueOf(request.getParameter("quantidade"));
+				Double preco = Double.valueOf(request.getParameter("preco"));
+				if (request.getParameter("dispOnLine") != null && request.getParameter("dispOnLine").equals("on")) {
+					dispOnLine = true;
+				}
+				Produto produto = new Produto(descricao, quantidade, preco, dispOnLine);
+				produto.salvar();
+
+				mensagem = "Produto cadastrado com sucesso.";
+			} else {
+				mensagem = "Os campos devem ser preenchidos corretamente.";
 			}
+			request.setAttribute("mensagem", mensagem);
+			dispatcher.forward(request, response);
+		} catch (NumberFormatException e) {
+			mensagem = "Os campos devem ser preenchidos com os formatos corretos.";
+			request.setAttribute("mensagem", mensagem);
+			dispatcher.forward(request, response);
 		}
 	}
 }
